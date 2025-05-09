@@ -2,7 +2,18 @@
 
 Este projeto é um boilerplate básico para uma aplicação Node.js seguindo o padrão MVC (Model-View-Controller), utilizando PostgreSQL como banco de dados.
 
-## Requisitos
+## Modelo de dados
+
+As entidades principais do projeto são: 
+Users ( usuários ): Representa os usuários do sistema.
+
+Esse é o diagrama conceitual do banco de dados
+![Logo](assets//modelo-sql.png)
+
+## Como rodar o projeto
+
+...
+
 
 - Node.js (versão X.X.X)
 - PostgreSQL (versão X.X.X)
