@@ -50,7 +50,7 @@ Representa um atendimento médico realizado para um paciente e está sempre vinc
 Esse é o diagrama conceitual do banco de dados:
 ![Supabase Projeto](./assets/supabase-projeto.png)
 
-O SQL se encontra NA PASTA DB
+O SQL se encontra na pasta scripts
 
 ##  Como Executar o Projeto Localmente
 ### Pré-requisitos
