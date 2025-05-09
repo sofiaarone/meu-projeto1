@@ -5,10 +5,6 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sofiaarone/meu-projeto1.git"
@@ -22,6 +18,7 @@
   "homepage": "https://github.com/sofiaarone/meu-projeto1#readme",
   "description": "",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^5.1.0"
   }
 }
