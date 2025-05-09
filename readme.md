@@ -41,7 +41,7 @@ meu-projeto1/
 ```
 ---
 ## Modelo de dados
-*As entidades principais do projeto são os users ( usuários ), que representam os usuários do sistema.
+*As entidades principais do projeto são os users ( usuários ), que representam os usuários do sistema.*
 - Paciente:
 Representa a pessoa atendida no sistema e cada paciente pode ter várias consultas associadas.
 - Consulta: 
@@ -99,3 +99,7 @@ npm start
 6. Acesse no navegador:
 
 http://localhost:3000
+
+## Informações adicionais
+
+A documentação WAD.md está aqui: https://github.com/sofiaarone/meu-projeto1/blob/main/docs/wad.md
