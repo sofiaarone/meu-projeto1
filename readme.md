@@ -30,7 +30,7 @@ meu-projeto1/
 ├── tests/                 # Arquivos de testes unitários
 │   └── example.test.js
 ├── .gitignore             # Arquivo para ignorar arquivos no Git
-├── .env.example           # Arquivo de exemplo para variáveis de ambiente
+├── .env                   # Arquivo de exemplo para variáveis de ambiente
 ├── jest.config.js         # Arquivo de configuração do Jest
 ├── package-lock.json      # Gerenciador de dependências do Node.js
 ├── package.json           # Gerenciador de dependências do Node.js
