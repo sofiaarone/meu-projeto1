@@ -1,11 +1,13 @@
 # Sistema de Gerenciamento de Pacientes e Consultas
 ## Descrição do Sistema
 
-Este projeto é uma aplicação web desenvolvida em Node.js, utilizando o padrão de arquitetura MVC (Model-View-Controller) e PostgreSQL como banco de dados. O sistema permite o gerenciamento de pacientes e suas respectivas consultas médicas.
+O Sistema de Gerenciamento de Pacientes e Consultas é uma aplicação web desenvolvida em Node.js, utilizando o padrão de arquitetura MVC (Model-View-Controller) e PostgreSQL como banco de dados. O sistema permite o gerenciamento de pacientes e suas respectivas consultas médicas.
+
 ---
 # Características do projeto
 
 Este projeto é uma aplicação web para gerenciamento de pacientes e consultas médicas, desenvolvida em Node.js com banco de dados PostgreSQL e estrutura organizada no padrão MVC. Permite o cadastro de pacientes, registro de consultas, e mantém um relacionamento entre ambos com integridade referencial. O sistema inclui um modelo relacional bem definido, scripts SQL para criação do banco e documentação clara para execução local, sendo facilmente extensível para novas funcionalidades.
+
 ---
 # Estrutura de pastas 
 
