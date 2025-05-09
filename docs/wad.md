@@ -6,6 +6,15 @@
 
 O Sistema de Gerenciamento de Pacientes e Consultas é uma aplicação web desenvolvida com Node.js e PostgreSQL para facilitar o controle clínico básico. Voltado a clínicas, consultórios ou profissionais da saúde, o sistema permite o cadastro de pacientes, registro de consultas e acompanhamento do histórico de atendimentos. Foi estruturado seguindo o padrão de projeto MVC (Model, View, Controller), o que facilita sua manutenção, escalabilidade e organização do código.
 
+## Diagrama do banco de dados
+
+Esse é o diagrama conceitual do banco de dados:
+![Supabase Projeto](./assets/supabase-projeto.png)
+
+O SQL se encontra na pasta scripts
+
+---
+
 ### Finalidades do Sistema
 
 - Cadastrar e armazenar informações dos pacientes
@@ -24,13 +33,9 @@ O sistema contempla o controle de duas entidades principais: pacientes e consult
 
 ---
 
-## Diagrama do Banco de Dados
-
-![Diagrama do Banco de Dados](./assets/diagrama-er.png)
-
----
-
 ### Entidades Principais
+
+*Estas são os users ( usuários ), que representam os usuários do sistema.*
 
 1. **Pacientes**
    - Armazena os dados básicos do paciente, como nome, data de nascimento, telefone e e-mail
