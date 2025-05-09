@@ -42,10 +42,10 @@ meu-projeto1/
 ---
 ## Modelo de dados
 *As entidades principais do projeto são os users ( usuários ), que representam os usuários do sistema.
-**Paciente:
-- Representa a pessoa atendida no sistema e cada paciente pode ter várias consultas associadas.
-**Consulta: 
-- Representa um atendimento médico realizado para um paciente e está sempre vinculada a um único paciente.
+- Paciente:
+Representa a pessoa atendida no sistema e cada paciente pode ter várias consultas associadas.
+- Consulta: 
+Representa um atendimento médico realizado para um paciente e está sempre vinculada a um único paciente.
 
 Esse é o diagrama conceitual do banco de dados:
 ![Supabase Projeto](./assets/supabase-projeto.png)
