@@ -2,6 +2,9 @@
   "name": "meu-projeto1",
   "version": "1.0.0",
   "main": "jest.config.js",
+  "scripts": {
+    "migration": "node scripts/runsql.js"
+  },
   "directories": {
     "test": "tests"
   },
