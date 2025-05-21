@@ -11,7 +11,7 @@ O Sistema de Gerenciamento de Pacientes e Consultas é uma aplicação web desen
 ## Diagrama do banco de dados
 
 Esse é o diagrama conceitual do banco de dados:
-![Supabase Projeto](./assets/supabase-projeto.png)
+![Supabase Projeto](../assets/supabase-projeto.png)
 
 O SQL se encontra na pasta scripts
 
