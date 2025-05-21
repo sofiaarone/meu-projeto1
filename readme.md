@@ -39,15 +39,6 @@ meu-projeto1/
 └── rest.http              # Teste de endpoints (opcional)
 
 ```
----
-## Diagrama do banco de dados
-
-Esse é o diagrama conceitual do banco de dados:
-![Supabase Projeto](./assets/supabase-projeto.png)
-
-O SQL se encontra na pasta scripts
-
----
 
 ##  Como Executar o Projeto Localmente
 ### Pré-requisitos
