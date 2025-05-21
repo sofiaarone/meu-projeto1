@@ -1,5 +1,5 @@
 -- Tabela de pacientes
-create table pacientes (
+create table IF NOT EXISTS pacientes (
   id uuid primary key default gen_random_uuid(),
   nome varchar(100) not null,
   data_nascimento date not null,
@@ -9,7 +9,7 @@ create table pacientes (
 );
 
 -- Tabela de médicos
-create table medicos (
+create table IF NOT EXISTS medicos (
   id uuid primary key default gen_random_uuid(),
   nome varchar(100) not null,
   especialidade varchar(100),
@@ -19,7 +19,7 @@ create table medicos (
 );
 
 -- Tabela de consultas
-create table consultas (
+create table IF NOT EXISTS consultas (
   id uuid primary key default gen_random_uuid(),
   paciente_id uuid references pacientes(id) on delete cascade,
   medico_id uuid references medicos(id) on delete set null,

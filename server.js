@@ -1,16 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const routes = require('./src/routes');
+
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
-// Configura o EJS
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
+app.use(cors());
+app.use(bodyParser.json());
 
-app.use(express.json());
+app.use('/api', routes);
 
-const routes = require('./routes/index');
-app.use('/', routes);
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
