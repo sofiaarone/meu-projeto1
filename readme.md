@@ -43,9 +43,21 @@ meu-projeto1/
 ##  Como Executar o Projeto Localmente
 ### Pré-requisitos
 
-- Node.js (versão 14 ou superior)
-- PostgreSQL (versão 12 ou superior)
-- npm
+- Node.js (v14 ou superior)
+- PostgreSQL (v12 ou superior)
+- npm (instalado junto com o Node)
+---
+## Dependências do Projeto
+Certifique-se de ter o Node.js e o PostgreSQL instalados. As dependências estão listadas no package.json, mas podem ser instaladas com:
+```
+npm install
+```
+### Principais bibliotecas:
+
+- express- Framework web
+- pg- Cliente PostgreSQL para Node.js
+- dotenv- Gerenciador de variáveis de ambiente
+- jest (para testes)
 ---
 ## Passos
 
