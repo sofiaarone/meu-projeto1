@@ -105,3 +105,44 @@ npm start
 6. Acesse no navegador:
 
 http://localhost:3000
+
+## Rodando as Migrações
+1. Criar banco de dados:
+
+- Crie um banco de dados PostgreSQL com o nome especificado no seu arquivo .env.
+- Executar o script SQL de inicialização:
+```
+npm run migration
+```
+Esse comando executa o script SQL que cria as tabelas pacientes, medicos e consultas. Além disso, ele insere dados fictícios para testes.
+
+## Testando as APIs
+Você pode utilizar as rotas da API utilizando o Postman ou Insomnia para os seguintes endpoints: 
+
+### Pacientes (/api/employees): 
+- GET /api/pacientes: Lista todos os  pacientes.
+- POST /api/pacientes: Cria um novo paciente.
+- PUT /api/pacientes/:id: Atualiza um paciente.
+- DELETE /api/pacientes/:id: Remove um paciente.
+
+Exemplo de criação de paciente (POST):
+
+```
+{
+  "nome": "Mariana Andrade",
+  "data_nascimento": "1985-02-14",
+  "email": "mari.andrade@gmail.com",
+  "telefone": "11999999999"
+}
+```
+Resposta de sucesso (201):
+```
+{
+    "id": "e84223af-de64-41a1-a5a5-97ef4c2a2ae6",
+    "nome": "Mariana Andrade",
+    "data_nascimento": "1985-02-14T03:00:00.000Z",
+    "email": "mari.andrade@gmail.com",
+    "telefone": "11999999999",
+    "criado_em": "2025-05-22T16:32:19.270Z"
+}
+```
