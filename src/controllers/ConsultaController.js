@@ -1,9 +1,9 @@
 const ConsultaModel = require('../models/ConsultaModel');
 
 exports.criarConsulta = async (req, res) => {
-  const { motivo, observacoes } = req.body;
+  const { paciente_id, medico_id, data_consulta, motivo, observacoes } = req.body;
   try {
-    const consulta = await ConsultaModel.criarConsulta(motivo, observacoes);
+    const consulta = await ConsultaModel.criarConsulta(paciente_id, medico_id, data_consulta, motivo, observacoes);
     res.status(201).json(consulta);
   } catch (err) {
     res.status(500).json({ error: err.message });

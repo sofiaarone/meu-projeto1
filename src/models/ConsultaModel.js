@@ -1,8 +1,11 @@
 const pool = require('../config/db');
 
-exports.criarConsulta = async (motivo, observacoes) => {
-  const query = 'INSERT INTO consultas (motivo, observacoes) VALUES ($1, $2) RETURNING *';
-  const values = [motivo, observacoes];
+exports.criarConsulta = async (paciente_id, medico_id, data_consulta, motivo, observacoes) => {
+  const query = `
+    INSERT INTO consultas (paciente_id, medico_id, data_consulta, motivo, observacoes)
+    VALUES ($1, $2, $3, $4, $5) RETURNING *
+  `;
+  const values = [paciente_id, medico_id, data_consulta, motivo, observacoes];
   const result = await pool.query(query, values);
   return result.rows[0];
 };
