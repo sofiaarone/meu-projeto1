@@ -10,34 +10,40 @@ Este projeto é uma aplicação web para gerenciamento de pacientes e consultas 
 
 ---
 ## Estrutura de pastas 
-
 ```
 meu-projeto1/
 │
-├── config/                # Arquivos de configuração (ex: conexão com banco)
-│   └── database.js
-├── controllers/           # Lógica de controle das requisições
-│   └── HomeController.js
-├── models/                # Definição de modelos de dados (estrutura do banco)
-│   └── User.js
-├── routes/                # Definição das rotas do sistema
-│   └── index.js
-├── services/              # Serviços auxiliares do sistema
-│   └── userService.js
-├── assets/                # Arquivos públicos como imagens e fontes
-├── scripts/               # Arquivos de JavaScript públicos
-├── styles/                # Arquivos CSS públicos
-├── tests/                 # Arquivos de testes unitários
-│   └── example.test.js
-├── .gitignore             # Arquivo para ignorar arquivos no Git
-├── .env                   # Arquivo de exemplo para variáveis de ambiente
-├── jest.config.js         # Arquivo de configuração do Jest
-├── package-lock.json      # Gerenciador de dependências do Node.js
-├── package.json           # Gerenciador de dependências do Node.js
-├── readme.md              # Documentação do projeto (Markdown)
-├── server.js              # Arquivo principal que inicializa o servidor
-└── rest.http              # Teste de endpoints (opcional)
-
+├── assets/
+│   └── supabase-projeto.png       # Diagrama conceitual do projeto
+├── documentos/
+│   └── wad.md                     # Documento WAD do projeto
+├── src/
+│   ├── config/
+│   │   └── db.js                  # Configuração de conexão com o banco de dados
+│   ├── controllers/               # Lógica dos controladores (camada C do MVC)
+│   │   ├── ConsultaController.js
+│   │   ├── MedicoController.js
+│   │   └── PacienteController.js
+│   ├── models/                    # Definições dos modelos (camada M do MVC)
+│   │   ├── ConsultaModel.js
+│   │   ├── MedicoModel.js
+│   │   └── PacienteModel.js
+│   ├── routes/                    # Arquivos de rotas da aplicação
+│   │   └── index.js
+│   ├── scripts/                   # Arquivos de JavaScript públicos
+│   │   ├── modelo-fisico.sql
+│   │   └── runsql.js
+│   ├── services/                  # Serviços auxiliares (ex: lógica de negócios)
+│   │   └── userService.js
+│   └── views/                     # Arquivos de visualização (camada V do MVC)
+│       └── home.ejs
+├── .env                           # Arquivo de exemplo para variáveis de ambiente
+├── .env.example                   # Exemplo de variáveis de ambiente
+├── .gitignore                     # Arquivos/pastas ignorados pelo Git
+├── package.json                   # Gerenciador de dependências do Node.js
+├── package-lock.json              # Gerenciador de dependências do Node.js
+└── README.md                      # Documentação do projeto (Markdown)
+├── server.js                      # Arquivo principal que inicializa o servidor
 ```
 
 ##  Como Executar o Projeto Localmente
@@ -99,7 +105,3 @@ npm start
 6. Acesse no navegador:
 
 http://localhost:3000
-
-## Informações adicionais
-
-A documentação WAD.md está aqui: https://github.com/sofiaarone/meu-projeto1/blob/main/docs/wad.md
