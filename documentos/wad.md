@@ -98,3 +98,14 @@ O sistema contempla o controle de duas entidades principais: pacientes e consult
 - O campo paciente_id nas consultas referencia diretamente um paciente válido
 - A exclusão de um paciente implica na exclusão automática de suas consultas (ON DELETE CASCADE)
 - O sistema utiliza UUID como chave primária para evitar colisões e garantir unicidade
+
+## Arquitetura MVC
+
+Neste projeto, a arquitetura MVC (Model-View-Controller), organiza o código em três camadas principais: 
+- Models: responsáveis por lidar com os dados e executar comandos SQL;
+- Controllers: recebem as requisições HTTP, processam a lógica e interagem com os Models;
+- Views: exibem os dados para o usuário, como listas de pacientes e consultas, além de formulários para cadastro e edição. 
+
+![Diagrama do banco de dados](../assets/Diagrama-banco-de-dados.png)
+
+O diagrama acima ilustra como essas camadas se comunicam entre si e com o banco de dados, promovendo uma estrutura mais clara, modular e de fácil manutenção.
