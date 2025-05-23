@@ -1,1 +1,84 @@
-GET http://localhost:3000/
+### Criar paciente
+POST http://localhost:3000/api/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Maria Souza",
+  "data_nascimento": "1980-04-10",
+  "email": "maria@souza.com",
+  "telefone": "11999999999"
+}
+
+### Listar pacientes
+GET http://localhost:3000/api/pacientes
+
+### Editar paciente
+PUT http://localhost:3000/api/pacientes/e84223af-de64-41a1-a5a5-97ef4c2a2ae6
+Content-Type: application/json
+
+{
+  "nome": "Maria S. Souza",
+  "data_nascimento": "1980-04-10",
+  "email": "maria.s@example.com",
+  "telefone": "11988888888"
+}
+
+### Deletar paciente
+DELETE http://localhost:3000/api/pacientes/0d7fbf11-4a8d-42a7-947c-ed80f7394180
+
+### Criar médico
+POST http://localhost:3000/api/medicos
+Content-Type: application/json
+
+{
+  "nome": "Dr. João Alencar",
+  "especialidade": "Cardiologia",
+  "email": "joao.alencar@gmail.com",
+  "telefone": "11912345678"
+}
+
+### Listar médicos
+GET http://localhost:3000/api/medicos
+
+### Editar médico
+PUT http://localhost:3000/api/medicos/97190ff3-8e24-4fef-87f6-32133908d25b
+Content-Type: application/json
+
+{
+  "nome": "Dr. João A.",
+  "especialidade": "Neurologia",
+  "email": "joao.alencarr@gmail.com",
+  "telefone": "11987654321"
+}
+
+### Deletar médico
+DELETE http://localhost:3000/api/medicos/97190ff3-8e24-4fef-87f6-32133908d25b
+
+
+### Criar consulta
+POST http://localhost:3000/api/consultas
+Content-Type: application/json
+
+{
+  "paciente_id": "1c7afc93-437f-46c5-b699-6bd6394868e3",
+  "medico_id": "f2eac5c2-f706-496e-a8df-ff3f1916c454",
+  "data_consulta": "2025-06-01T10:30:00Z",
+  "observacoes": "Consulta de rotina"
+}
+
+### Listar consultas
+GET http://localhost:3000/api/consultas
+
+### Editar consulta
+PUT http://localhost:3000/api/consultas/244a3576-6b70-4d01-a4aa-40fa9f226c2f
+Content-Type: application/json
+
+{
+  "paciente_id": 1,
+  "medico_id": 1,
+  "data_consulta": "2025-06-01T11:00:00Z",
+  "observacoes": "Reagendada"
+}
+
+### Deletar consulta
+DELETE http://localhost:3000/api/consultas/244a3576-6b70-4d01-a4aa-40fa9f226c2f
