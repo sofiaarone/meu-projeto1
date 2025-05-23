@@ -34,7 +34,9 @@ meu-projeto1/
 │   │   ├── modelo-fisico.sql
 │   │   └── runsql.js
 │   ├── services/                  # Serviços auxiliares (ex: lógica de negócios)
-│   │   └── userService.js
+│   │   ├── ConsultaService.js
+│   │   └── MedicoService.js
+│   │   └── PacienteService.js
 │   └── views/                     # Arquivos de visualização (camada V do MVC)
 │       └── home.ejs
 ├── .env                           # Arquivo de exemplo para variáveis de ambiente
@@ -42,8 +44,10 @@ meu-projeto1/
 ├── .gitignore                     # Arquivos/pastas ignorados pelo Git
 ├── package.json                   # Gerenciador de dependências do Node.js
 ├── package-lock.json              # Gerenciador de dependências do Node.js
-└── README.md                      # Documentação do projeto (Markdown)
-├── server.js                      # Arquivo principal que inicializa o servidor
+├── README.md                      # Documentação do projeto (Markdown)
+├── rest.http                      # Requisições HTTP organizadas
+└── server.js                      # Arquivo principal que inicializa o servidor
+
 ```
 
 ##  Como Executar o Projeto Localmente
