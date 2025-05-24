@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "nome": "Maria Souza",
   "data_nascimento": "1980-04-10",
-  "email": "maria@souza.com",
+  "email": "maria@gmail.com",
   "telefone": "11999999999"
 }
 
@@ -13,7 +13,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/pacientes
 
 ### Editar paciente
-PUT http://localhost:3000/api/pacientes/e84223af-de64-41a1-a5a5-97ef4c2a2ae6
+PUT http://localhost:3000/api/pacientes/1c7afc93-437f-46c5-b699-6bd6394868e3
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ### Deletar paciente
-DELETE http://localhost:3000/api/pacientes/0d7fbf11-4a8d-42a7-947c-ed80f7394180
+DELETE http://localhost:3000/api/pacientes/01af82de-534d-4911-b221-5affce20c010
 
 ### Criar médico
 POST http://localhost:3000/api/medicos
@@ -33,7 +33,7 @@ Content-Type: application/json
 {
   "nome": "Dr. João Alencar",
   "especialidade": "Cardiologia",
-  "email": "joao.alencar@gmail.com",
+  "email": "joao.alencarr@gmail.com",
   "telefone": "11912345678"
 }
 
@@ -41,18 +41,18 @@ Content-Type: application/json
 GET http://localhost:3000/api/medicos
 
 ### Editar médico
-PUT http://localhost:3000/api/medicos/97190ff3-8e24-4fef-87f6-32133908d25b
+PUT http://localhost:3000/api/medicos/270e2349-7088-4205-951c-58c51b98a03b
 Content-Type: application/json
 
 {
   "nome": "Dr. João A.",
-  "especialidade": "Neurologia",
+  "especialidade": "Cardiologia",
   "email": "joao.alencarr@gmail.com",
   "telefone": "11987654321"
 }
 
 ### Deletar médico
-DELETE http://localhost:3000/api/medicos/97190ff3-8e24-4fef-87f6-32133908d25b
+DELETE http://localhost:3000/api/medicos/270e2349-7088-4205-951c-58c51b98a03b
 
 
 ### Criar consulta
@@ -63,22 +63,24 @@ Content-Type: application/json
   "paciente_id": "1c7afc93-437f-46c5-b699-6bd6394868e3",
   "medico_id": "f2eac5c2-f706-496e-a8df-ff3f1916c454",
   "data_consulta": "2025-06-01T10:30:00Z",
-  "observacoes": "Consulta de rotina"
+  "observacoes": "Consulta de rotina",
+  "motivo": "Dor no peito"
 }
 
 ### Listar consultas
 GET http://localhost:3000/api/consultas
 
 ### Editar consulta
-PUT http://localhost:3000/api/consultas/244a3576-6b70-4d01-a4aa-40fa9f226c2f
+PUT http://localhost:3000/api/consultas/c7d97555-afda-4d6a-8c00-041b2944556b
 Content-Type: application/json
 
 {
   "paciente_id": 1,
   "medico_id": 1,
   "data_consulta": "2025-06-01T11:00:00Z",
-  "observacoes": "Reagendada"
+  "observacoes": "Reagendada",
+  "motivo": "Dor no peito persistente"
 }
 
 ### Deletar consulta
-DELETE http://localhost:3000/api/consultas/244a3576-6b70-4d01-a4aa-40fa9f226c2f
+DELETE http://localhost:3000/api/consultas/c7d97555-afda-4d6a-8c00-041b2944556b
