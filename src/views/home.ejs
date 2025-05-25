@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Teste</title>
+  <title>Pacientes</title>
 </head>
 <body>
-  <h1>Funcionou!</h1>
+  <h1>Lista de Pacientes</h1>
+  <ul>
+    <% pacientes.forEach(p => { %>
+      <li><%= p.nome %></li>
+    <% }) %>
+  </ul>
 </body>
 </html>
