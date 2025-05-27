@@ -83,4 +83,4 @@ Content-Type: application/json
 }
 
 ### Deletar consulta
-DELETE http://localhost:3000/api/consultas/c7d97555-afda-4d6a-8c00-041b2944556b
+DELETE http://localhost:3000/api/consultas/244a3576-6b70-4d01-a4aa-40fa9f226c2f

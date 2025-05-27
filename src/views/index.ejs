@@ -52,14 +52,14 @@
         </tbody>
     </table>
 
-    <!-- Tabela de Médicos -->
-    <h2>Médicos</h2>
+        <!-- Tabela de Médicos -->
     <table>
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Especialidade</th>
-                <th>CRM</th>
+                <th>Email</th>
+                <th>Telefone</th>
             </tr>
         </thead>
         <tbody>
@@ -68,12 +68,13 @@
                     <tr>
                         <td><%= medico.nome %></td>
                         <td><%= medico.especialidade %></td>
-                        <td><%= medico.crm %></td>
+                        <td><%= medico.email %></td>
+                        <td><%= medico.telefone %></td>
                     </tr>
                 <% }); %>
             <% } else { %>
                 <tr>
-                    <td colspan="3">Nenhum médico encontrado</td>
+                    <td colspan="4">Nenhum médico encontrado</td>
                 </tr>
             <% } %>
         </tbody>
@@ -87,17 +88,17 @@
                 <th>Paciente</th>
                 <th>Médico</th>
                 <th>Data</th>
-                <th>Hora</th>
+                <th>Motivo</th>
             </tr>
         </thead>
         <tbody>
             <% if (locals.consultas && consultas.length > 0) { %>
                 <% consultas.forEach(function(consulta) { %>
                     <tr>
-                        <td><%= consulta.paciente_nome %></td>
-                        <td><%= consulta.medico_nome %></td>
+                        <td><%= consulta.paciente_id %></td>
+                        <td><%= consulta.medico_id %></td>
                         <td><%= consulta.data_consulta %></td>
-                        <td><%= consulta.hora_consulta %></td>
+                        <td><%= consulta.motivo_consulta %></td>
                     </tr>
                 <% }); %>
             <% } else { %>
