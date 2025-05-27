@@ -16,13 +16,15 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Main route
+// ...existing code...
+// Main route
 app.get('/', async (req, res) => {
     try {
         // Using Promise.all to fetch data concurrently
         const [pacientes, medicos, consultas] = await Promise.all([
-            PacienteModel.listarTodos(),
+            PacienteModel.listarPacientes(),  // Alterado de listarTodos para listarPacientes
             MedicoModel.listarTodos(),
-            ConsultaModel.listarTodas()
+            ConsultaModel.listarConsultas()   // Alterado de listarTodas para listarConsultas
         ]);
 
         console.log('Dados carregados:', { 
@@ -30,6 +32,7 @@ app.get('/', async (req, res) => {
             medicos: medicos?.length || 0,
             consultas: consultas?.length || 0
         });
+// ...existing code...
 
         res.render('index', {
             pacientes: pacientes || [],
