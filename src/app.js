@@ -1,35 +1,56 @@
 const express = require('express');
 const path = require('path');
+const PacienteModel = require('./models/PacienteModel');
+const MedicoModel = require('./models/MedicoModel');
+const ConsultaModel = require('./models/ConsultaModel');
 
+// Initialize Express
 const app = express();
 
-// Debug logs
-console.log('Diretório atual:', __dirname);
-console.log('Caminho das views:', path.join(__dirname, 'views'));
-
-// Configura o EJS como view engine
+// View engine setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Log para todas as requisições
-app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    next();
+// Middlewares
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// Main route
+app.get('/', async (req, res) => {
+    try {
+        // Using Promise.all to fetch data concurrently
+        const [pacientes, medicos, consultas] = await Promise.all([
+            PacienteModel.listarTodos(),
+            MedicoModel.listarTodos(),
+            ConsultaModel.listarTodas()
+        ]);
+
+        console.log('Dados carregados:', { 
+            pacientes: pacientes?.length || 0,
+            medicos: medicos?.length || 0,
+            consultas: consultas?.length || 0
+        });
+
+        res.render('index', {
+            pacientes: pacientes || [],
+            medicos: medicos || [],
+            consultas: consultas || []
+        });
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+        res.render('index', {
+            pacientes: [],
+            medicos: [],
+            consultas: [],
+            error: 'Erro ao carregar dados'
+        });
+    }
 });
 
-// Rota principal com tratamento de erro
-app.get('/', (req, res, next) => {
-    console.log('Tentando renderizar index.ejs');
-    res.render('index', (err, html) => {
-        if (err) {
-            console.error('Erro ao renderizar:', err);
-            return next(err);
-        }
-        res.send(html);
-    });
-});
-
-const PORT = 3001; // Mudando para porta 3001
+// Start server
+const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+module.exports = app;

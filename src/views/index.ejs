@@ -3,16 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Projeto</title>
+    <title>Sistema de Consultas</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bem-vindo ao Sistema</h1>
-    <nav>
-        <ul>
-            <li><a href="/api/pacientes">Pacientes</a></li>
-            <li><a href="/api/medicos">Médicos</a></li>
-            <li><a href="/api/consultas">Consultas</a></li>
-        </ul>
-    </nav>
+    <h1>Sistema de Consultas Médicas</h1>
+    
+    <!-- Tabela de Pacientes -->
+    <h2>Pacientes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Data de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (locals.pacientes && pacientes.length > 0) { %>
+                <% pacientes.forEach(function(paciente) { %>
+                    <tr>
+                        <td><%= paciente.nome %></td>
+                        <td><%= paciente.email %></td>
+                        <td><%= paciente.telefone %></td>
+                        <td><%= paciente.data_nascimento %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">Nenhum paciente encontrado</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <!-- Tabela de Médicos -->
+    <h2>Médicos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>CRM</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (locals.medicos && medicos.length > 0) { %>
+                <% medicos.forEach(function(medico) { %>
+                    <tr>
+                        <td><%= medico.nome %></td>
+                        <td><%= medico.especialidade %></td>
+                        <td><%= medico.crm %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">Nenhum médico encontrado</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <!-- Tabela de Consultas -->
+    <h2>Consultas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Data</th>
+                <th>Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (locals.consultas && consultas.length > 0) { %>
+                <% consultas.forEach(function(consulta) { %>
+                    <tr>
+                        <td><%= consulta.paciente_nome %></td>
+                        <td><%= consulta.medico_nome %></td>
+                        <td><%= consulta.data_consulta %></td>
+                        <td><%= consulta.hora_consulta %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">Nenhuma consulta encontrada</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </body>
 </html>
