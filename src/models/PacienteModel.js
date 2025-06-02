@@ -1,5 +1,23 @@
 const pool = require('../config/db');
 
+// Adicione estes métodos
+exports.pesquisarPorNome = async (nome) => {
+    const query = 'SELECT * FROM pacientes WHERE nome ILIKE $1';
+    const result = await pool.query(query, [`%${nome}%`]);
+    return result.rows;
+};
+
+exports.criar = async (paciente) => {
+    const query = `
+        INSERT INTO pacientes (nome, email, telefone, data_nascimento)
+        VALUES ($1, $2, $3, $4)
+        RETURNING *
+    `;
+    const values = [paciente.nome, paciente.email, paciente.telefone, paciente.data_nascimento];
+    const result = await pool.query(query, values);
+    return result.rows[0];
+};
+
 exports.criarPaciente = async (nome, data_nascimento, email, telefone) => {
   const query = `
     INSERT INTO pacientes (nome, data_nascimento, email, telefone)

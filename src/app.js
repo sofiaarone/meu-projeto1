@@ -11,10 +11,80 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Middlewares
-app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public')));
+// Adicione após as configurações iniciais e antes do app.listen
 
+// Middleware para processar formulários
+app.use(express.urlencoded({ extended: true }));
+
+// Rotas para Pacientes
+app.get('/pesquisar-paciente', async (req, res) => {
+    try {
+        const { nome } = req.query;
+        const pacientes = await PacienteModel.pesquisarPorNome(nome);
+        const [medicos, consultas] = await Promise.all([
+            MedicoModel.listarTodos(),
+            ConsultaModel.listarConsultas()
+        ]);
+        res.render('index', { pacientes, medicos, consultas });
+    } catch (error) {
+        console.error('Erro na pesquisa:', error);
+        res.redirect('/?error=Erro na pesquisa');
+    }
+});
+
+app.post('/adicionar-paciente', async (req, res) => {
+    try {
+        const { nome, email, telefone, data_nascimento } = req.body;
+        await PacienteModel.criar({ nome, email, telefone, data_nascimento });
+        res.redirect('/');
+    } catch (error) {
+        console.error('Erro ao adicionar:', error);
+        res.redirect('/?error=Erro ao adicionar paciente');
+    }
+});
+
+// Rotas para Médicos
+
+app.get('/pesquisar-medico', async (req, res) => {
+    try {
+        const { nome } = req.query;
+        const [medicos, pacientes, consultas] = await Promise.all([
+            MedicoModel.pesquisarPorNome(nome),
+            PacienteModel.listarPacientes(),
+            ConsultaModel.listarConsultas()
+        ]);
+        
+        res.render('index', { pacientes, medicos, consultas });
+    } catch (error) {
+        console.error('Erro na pesquisa:', error);
+        res.redirect('/?error=Erro na pesquisa');
+    }
+});
+
+// ...existing code...
+
+app.post('/adicionar-medico', async (req, res) => {
+    try {
+        const { nome, especialidade, email, telefone } = req.body;
+        await MedicoModel.criar({ nome, especialidade, email, telefone });
+        res.redirect('/');
+    } catch (error) {
+        console.error('Erro ao adicionar:', error);
+        res.redirect('/?error=Erro ao adicionar médico');
+    }
+});
+
+// Rotas para Consultas
+app.post('/adicionar-consulta', async (req, res) => {
+    try {
+        const { paciente_id, medico_id, data_consulta, motivo } = req.body;
+        await ConsultaModel.criar({ paciente_id, medico_id, data_consulta, motivo });
+        res.redirect('/');
+    } catch (error) {
+        console.error('Erro ao adicionar:', error);
+        res.redirect('/?error=Erro ao adicionar consulta');
+    }
+});
 // Main route
 // ...existing code...
 // Main route

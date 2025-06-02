@@ -2,86 +2,202 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Consultas</title>
+    <title>Sistema de Consultas Médicas</title>
     <style>
+        body { padding: 20px; font-family: Arial, sans-serif; }
+        .section { margin-bottom: 30px; }
+        .search-form, .add-form {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 5px;
+        }
+        .form-group { margin: 10px 0; }
+        .btn {
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-input {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin-top: 20px;
         }
         th, td {
+            padding: 10px;
             border: 1px solid #ddd;
-            padding: 8px;
             text-align: left;
         }
-        th {
-            background-color: #f4f4f4;
-        }
+        th { background-color: #f4f4f4; }
     </style>
 </head>
 <body>
     <h1>Sistema de Consultas Médicas</h1>
     
-    <!-- Tabela de Pacientes -->
-    <h2>Pacientes</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Data de Nascimento</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (locals.pacientes && pacientes.length > 0) { %>
-                <% pacientes.forEach(function(paciente) { %>
-                    <tr>
-                        <td><%= paciente.nome %></td>
-                        <td><%= paciente.email %></td>
-                        <td><%= paciente.telefone %></td>
-                        <td><%= paciente.data_nascimento %></td>
-                    </tr>
-                <% }); %>
-            <% } else { %>
-                <tr>
-                    <td colspan="4">Nenhum paciente encontrado</td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
+    <!-- Seção de Pacientes -->
+    <div class="section">
+        <h2>Pacientes</h2>
+        <div class="search-form">
+            <form action="/pesquisar-paciente" method="GET">
+                <input type="text" name="nome" placeholder="Pesquisar paciente..." class="search-input">
+                <button type="submit" class="btn">Pesquisar</button>
+            </form>
+        </div>
 
-        <!-- Tabela de Médicos -->
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Especialidade</th>
-                <th>Email</th>
-                <th>Telefone</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (locals.medicos && medicos.length > 0) { %>
-                <% medicos.forEach(function(medico) { %>
-                    <tr>
-                        <td><%= medico.nome %></td>
-                        <td><%= medico.especialidade %></td>
-                        <td><%= medico.email %></td>
-                        <td><%= medico.telefone %></td>
-                    </tr>
-                <% }); %>
-            <% } else { %>
-                <tr>
-                    <td colspan="4">Nenhum médico encontrado</td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
+        <div class="add-form">
+            <h3>Adicionar Novo Paciente</h3>
+            <form action="/adicionar-paciente" method="POST">
+                <div class="form-group">
+                    <input type="text" name="nome" placeholder="Nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="telefone" placeholder="Telefone" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" name="data_nascimento" required>
+                </div>
+                <button type="submit" class="btn">Adicionar Paciente</button>
+            </form>
+        </div>
 
-    <!-- Tabela de Consultas -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Data de Nascimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (locals.pacientes && pacientes.length > 0) { %>
+                    <% pacientes.forEach(function(paciente) { %>
+                        <tr>
+                            <td><%= paciente.nome %></td>
+                            <td><%= paciente.email %></td>
+                            <td><%= paciente.telefone %></td>
+                            <td><%= new Date(paciente.data_nascimento).toLocaleDateString() %></td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="4">Nenhum paciente encontrado</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Seção de Médicos -->
+    <div class="section">
+        <h2>Médicos</h2>
+        <div class="search-form">
+            <form action="/pesquisar-medico" method="GET">
+                <input type="text" name="nome" placeholder="Pesquisar médico..." class="search-input">
+                <button type="submit" class="btn">Pesquisar</button>
+            </form>
+        </div>
+
+        <div class="add-form">
+            <h3>Adicionar Novo Médico</h3>
+            <form action="/adicionar-medico" method="POST">
+                <div class="form-group">
+                    <input type="text" name="nome" placeholder="Nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="especialidade" placeholder="Especialidade" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="telefone" placeholder="Telefone" required>
+                </div>
+                <button type="submit" class="btn">Adicionar Médico</button>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (locals.medicos && medicos.length > 0) { %>
+                    <% medicos.forEach(function(medico) { %>
+                        <tr>
+                            <td><%= medico.nome %></td>
+                            <td><%= medico.especialidade %></td>
+                            <td><%= medico.email %></td>
+                            <td><%= medico.telefone %></td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="4">Nenhum médico encontrado</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Seção de Consultas -->
+    <!-- Seção de Consultas -->
+<div class="section">
     <h2>Consultas</h2>
+    <div class="add-form">
+        <h3>Agendar Nova Consulta</h3>
+        <form action="/adicionar-consulta" method="POST">
+            <div class="form-group">
+                <label for="paciente_id">Paciente:</label>
+                <select name="paciente_id" id="paciente_id" required>
+                    <option value="">Selecione o Paciente</option>
+                    <% if (locals.pacientes && pacientes.length > 0) { %>
+                        <% pacientes.forEach(function(paciente) { %>
+                            <option value="<%= paciente.id %>"><%= paciente.nome %></option>
+                        <% }); %>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="medico_id">Médico:</label>
+                <select name="medico_id" id="medico_id" required>
+                    <option value="">Selecione o Médico</option>
+                    <% if (locals.medicos && medicos.length > 0) { %>
+                        <% medicos.forEach(function(medico) { %>
+                            <option value="<%= medico.id %>"><%= medico.nome %></option>
+                        <% }); %>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="data_consulta">Data e Hora:</label>
+                <input type="datetime-local" id="data_consulta" name="data_consulta" required>
+            </div>
+            <div class="form-group">
+                <label for="motivo">Motivo:</label>
+                <textarea id="motivo" name="motivo" required></textarea>
+            </div>
+            <button type="submit" class="btn">Agendar Consulta</button>
+        </form>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -95,9 +211,9 @@
             <% if (locals.consultas && consultas.length > 0) { %>
                 <% consultas.forEach(function(consulta) { %>
                     <tr>
-                        <td><%= consulta.paciente_id %></td>
-                        <td><%= consulta.medico_id %></td>
-                        <td><%= consulta.data_consulta %></td>
+                        <td><%= consulta.paciente_nome || 'N/A' %></td>
+                        <td><%= consulta.medico_nome || 'N/A' %></td>
+                        <td><%= new Date(consulta.data_consulta).toLocaleString() %></td>
                         <td><%= consulta.motivo %></td>
                     </tr>
                 <% }); %>
@@ -108,5 +224,6 @@
             <% } %>
         </tbody>
     </table>
+</div>
 </body>
 </html>
