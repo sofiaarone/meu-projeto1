@@ -31,42 +31,40 @@ POST http://localhost:3000/api/medicos
 Content-Type: application/json
 
 {
-  "nome": "Dr. João Alencar",
-  "especialidade": "Cardiologia",
-  "email": "joao.alencarr@gmail.com",
-  "telefone": "11912345678"
+    "nome": "Dr. João Alencar",
+    "especialidade": "Cardiologia",
+    "email": "joao.alencarr@gmail.com",
+    "telefone": "11912345678"
 }
 
 ### Listar médicos
 GET http://localhost:3000/api/medicos
 
 ### Editar médico
-PUT http://localhost:3000/api/medicos/270e2349-7088-4205-951c-58c51b98a03b
+PUT http://localhost:3000/api/medicos/f32b3bab-1cb1-4335-b7aa-70e7320821c2
 Content-Type: application/json
 
 {
-  "nome": "Dr. João A.",
-  "especialidade": "Cardiologia",
-  "email": "joao.alencarr@gmail.com",
-  "telefone": "11987654321"
+    "nome": "Dr. João A.",
+    "especialidade": "Cardiologia",
+    "email": "joao.alencarr@gmail.com",
+    "telefone": "11987654321"
 }
 
 ### Deletar médico
-DELETE http://localhost:3000/api/medicos/270e2349-7088-4205-951c-58c51b98a03b
-
+DELETE http://localhost:3000/api/medicos/f2eac5c2-f706-496e-a8df-ff3f1916c454
 
 ### Criar consulta
 POST http://localhost:3000/api/consultas
 Content-Type: application/json
 
 {
-  "paciente_id": "1c7afc93-437f-46c5-b699-6bd6394868e3",
-  "medico_id": "f2eac5c2-f706-496e-a8df-ff3f1916c454",
-  "data_consulta": "2025-06-01T10:30:00Z",
-  "observacoes": "Consulta de rotina",
-  "motivo": "Dor no peito"
+    "paciente_id": "1c7afc93-437f-46c5-b699-6bd6394868e3",
+    "medico_id": "f32b3bab-1cb1-4335-b7aa-70e7320821c2",
+    "data_consulta": "2025-06-01T10:30:00",
+    "motivo": "Consulta de rotina",
+    "observacoes": "Primeira consulta"
 }
-
 ### Listar consultas
 GET http://localhost:3000/api/consultas
 
@@ -75,11 +73,11 @@ PUT http://localhost:3000/api/consultas/c7d97555-afda-4d6a-8c00-041b2944556b
 Content-Type: application/json
 
 {
-  "paciente_id": 1,
-  "medico_id": 1,
-  "data_consulta": "2025-06-01T11:00:00Z",
-  "observacoes": "Reagendada",
-  "motivo": "Dor no peito persistente"
+    "paciente_id": "1c7afc93-437f-46c5-b699-6bd6394868e3",
+    "medico_id": "f2eac5c2-f706-496e-a8df-ff3f1916c454",
+    "data_consulta": "2025-06-01T11:00:00Z",
+    "motivo": "Dor no peito persistente",
+    "observacoes": "Reagendada - Paciente solicitou alteração"
 }
 
 ### Deletar consulta

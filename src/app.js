@@ -45,80 +45,97 @@ app.post('/adicionar-paciente', async (req, res) => {
 
 // Rotas para Médicos
 
-app.get('/pesquisar-medico', async (req, res) => {
+// ...existing code...
+
+// ...existing code...
+
+// API Médicos
+app.post('/api/medicos', async (req, res) => {
     try {
-        const { nome } = req.query;
-        const [medicos, pacientes, consultas] = await Promise.all([
-            MedicoModel.pesquisarPorNome(nome),
-            PacienteModel.listarPacientes(),
-            ConsultaModel.listarConsultas()
-        ]);
-        
-        res.render('index', { pacientes, medicos, consultas });
+        const medico = await MedicoModel.criar(req.body);
+        res.status(201).json(medico);
     } catch (error) {
-        console.error('Erro na pesquisa:', error);
-        res.redirect('/?error=Erro na pesquisa');
+        res.status(500).json({ error: 'Erro ao criar médico' });
+    }
+});
+
+app.get('/api/medicos', async (req, res) => {
+    try {
+        const medicos = await MedicoModel.listarTodos();
+        res.json(medicos);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao listar médicos' });
     }
 });
 
 // ...existing code...
 
-app.post('/adicionar-medico', async (req, res) => {
+app.put('/api/medicos/:id', async (req, res) => {
     try {
-        const { nome, especialidade, email, telefone } = req.body;
-        await MedicoModel.criar({ nome, especialidade, email, telefone });
-        res.redirect('/');
+        const medico = await MedicoModel.editar(req.params.id, req.body);
+        if (!medico) {
+            return res.status(404).json({ error: 'Médico não encontrado' });
+        }
+        res.json(medico);
     } catch (error) {
-        console.error('Erro ao adicionar:', error);
-        res.redirect('/?error=Erro ao adicionar médico');
+        console.error('Erro ao editar médico:', error);
+        res.status(500).json({ error: 'Erro ao editar médico' });
     }
 });
 
-// Rotas para Consultas
-app.post('/adicionar-consulta', async (req, res) => {
-    try {
-        const { paciente_id, medico_id, data_consulta, motivo } = req.body;
-        await ConsultaModel.criar({ paciente_id, medico_id, data_consulta, motivo });
-        res.redirect('/');
-    } catch (error) {
-        console.error('Erro ao adicionar:', error);
-        res.redirect('/?error=Erro ao adicionar consulta');
-    }
-});
-// Main route
-// ...existing code...
-// Main route
-app.get('/', async (req, res) => {
-    try {
-        // Using Promise.all to fetch data concurrently
-        const [pacientes, medicos, consultas] = await Promise.all([
-            PacienteModel.listarPacientes(),  // Alterado de listarTodos para listarPacientes
-            MedicoModel.listarTodos(),
-            ConsultaModel.listarConsultas()   // Alterado de listarTodas para listarConsultas
-        ]);
-
-        console.log('Dados carregados:', { 
-            pacientes: pacientes?.length || 0,
-            medicos: medicos?.length || 0,
-            consultas: consultas?.length || 0
-        });
 // ...existing code...
 
-        res.render('index', {
-            pacientes: pacientes || [],
-            medicos: medicos || [],
-            consultas: consultas || []
-        });
+app.delete('/api/medicos/:id', async (req, res) => {
+    try {
+        await MedicoModel.excluir(req.params.id);
+        res.status(204).send();
     } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-        res.render('index', {
-            pacientes: [],
-            medicos: [],
-            consultas: [],
-            error: 'Erro ao carregar dados'
-        });
+        res.status(500).json({ error: 'Erro ao excluir médico' });
     }
 });
+
+// API Consultas
+// ...existing code...
+
+app.post('/api/consultas', async (req, res) => {
+    try {
+        const consulta = await ConsultaModel.criarConsulta(req.body);
+        res.status(201).json(consulta);
+    } catch (error) {
+        console.error('Erro ao criar consulta:', error);
+        res.status(500).json({ error: 'Erro ao criar consulta' });
+    }
+});
+
+// ...existing code...
+app.get('/api/consultas', async (req, res) => {
+    try {
+        const consultas = await ConsultaModel.listarConsultas();
+        res.json(consultas);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao listar consultas' });
+    }
+});
+
+app.put('/api/consultas/:id', async (req, res) => {
+    try {
+        const consulta = await ConsultaModel.atualizar(req.params.id, req.body);
+        res.json(consulta);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao atualizar consulta' });
+    }
+});
+
+app.delete('/api/consultas/:id', async (req, res) => {
+    try {
+        await ConsultaModel.deletar(req.params.id);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao deletar consulta' });
+    }
+});
+
+// ...existing code...
 
 // Start server
 const PORT = 3001;
