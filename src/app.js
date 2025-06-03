@@ -7,6 +7,39 @@ const ConsultaModel = require('./models/ConsultaModel');
 // Initialize Express
 const app = express();
 
+// Adicione após as configurações iniciais e antes das outras rotas
+
+// Rota principal
+app.get('/', async (req, res) => {
+    try {
+        const [pacientes, medicos, consultas] = await Promise.all([
+            PacienteModel.listarPacientes(),
+            MedicoModel.listarTodos(),
+            ConsultaModel.listarConsultas()
+        ]);
+        
+        console.log('Dados carregados:', {
+            pacientes: pacientes.length,
+            medicos: medicos.length,
+            consultas: consultas.length
+        });
+        
+        res.render('index', { 
+            pacientes, 
+            medicos, 
+            consultas,
+            error: req.query.error
+        });
+    } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+        res.render('index', { 
+            pacientes: [], 
+            medicos: [], 
+            consultas: [],
+            error: 'Erro ao carregar dados'
+        });
+    }
+});
 // View engine setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
