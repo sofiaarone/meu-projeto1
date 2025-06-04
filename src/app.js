@@ -88,6 +88,7 @@ app.post('/api/medicos', async (req, res) => {
         const medico = await MedicoModel.criar(req.body);
         res.status(201).json(medico);
     } catch (error) {
+        console.error('Erro ao criar médico:', error);
         res.status(500).json({ error: 'Erro ao criar médico' });
     }
 });
@@ -105,18 +106,15 @@ app.get('/api/medicos', async (req, res) => {
 
 app.put('/api/medicos/:id', async (req, res) => {
     try {
-        const medico = await MedicoModel.editar(req.params.id, req.body);
+        const medico = await MedicoModel.atualizar(req.params.id, req.body);
         if (!medico) {
             return res.status(404).json({ error: 'Médico não encontrado' });
         }
         res.json(medico);
     } catch (error) {
-        console.error('Erro ao editar médico:', error);
-        res.status(500).json({ error: 'Erro ao editar médico' });
+        res.status(500).json({ error: 'Erro ao atualizar médico' });
     }
 });
-
-// ...existing code...
 
 app.delete('/api/medicos/:id', async (req, res) => {
     try {
@@ -126,6 +124,18 @@ app.delete('/api/medicos/:id', async (req, res) => {
         res.status(500).json({ error: 'Erro ao excluir médico' });
     }
 });
+
+app.post('/adicionar-medico', async (req, res) => {
+    try {
+        await MedicoModel.criar(req.body);
+        res.redirect('/');
+    } catch (error) {
+        console.error('Erro ao criar médico:', error);
+        res.redirect('/?error=Erro ao criar médico');
+    }
+});
+
+
 
 // API Consultas
 // ...existing code...
