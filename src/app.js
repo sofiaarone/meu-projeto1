@@ -7,9 +7,9 @@ const ConsultaModel = require('./models/ConsultaModel');
 // Initialize Express
 const app = express();
 
-// Adicione após as configurações iniciais e antes das outras rotas
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Rota principal
 app.get('/', async (req, res) => {
     try {
         const [pacientes, medicos, consultas] = await Promise.all([
@@ -129,6 +129,16 @@ app.delete('/api/medicos/:id', async (req, res) => {
 
 // API Consultas
 // ...existing code...
+
+app.post('/adicionar-consulta', async (req, res) => {
+    try {
+        const consulta = await ConsultaModel.criarConsulta(req.body);
+        res.redirect('/');
+    } catch (error) {
+        console.error('Erro ao criar consulta:', error);
+        res.redirect('/?error=Erro ao criar consulta');
+    }
+});
 
 app.post('/api/consultas', async (req, res) => {
     try {
