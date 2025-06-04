@@ -93,16 +93,34 @@ app.post('/api/medicos', async (req, res) => {
     }
 });
 
-app.get('/api/medicos', async (req, res) => {
+// Rota de pesquisa de médicos
+app.get('/pesquisar-medico', async (req, res) => {
     try {
-        const medicos = await MedicoModel.listarTodos();
-        res.json(medicos);
+        const { nome } = req.query;
+        let medicos;
+        
+        if (nome) {
+            medicos = await MedicoModel.pesquisarPorNome(nome);
+        } else {
+            medicos = await MedicoModel.listarTodos();
+        }
+
+        const [pacientes, consultas] = await Promise.all([
+            PacienteModel.listarPacientes(),
+            ConsultaModel.listarConsultas()
+        ]);
+
+        res.render('index', {
+            pacientes,
+            medicos,
+            consultas,
+            searchTerm: nome || ''
+        });
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao listar médicos' });
+        console.error('Erro na pesquisa:', error);
+        res.redirect('/?error=Erro ao pesquisar médicos');
     }
 });
-
-// ...existing code...
 
 app.put('/api/medicos/:id', async (req, res) => {
     try {

@@ -62,6 +62,22 @@ const MedicoModel = {
             console.error('Erro ao excluir médico:', error);
             throw error;
         }
+    },
+
+
+    pesquisarPorNome: async (nome) => {
+        try {
+            const query = `
+                SELECT * FROM medicos 
+                WHERE LOWER(nome) LIKE LOWER($1) 
+                ORDER BY nome
+            `;
+            const result = await pool.query(query, [`%${nome}%`]);
+            return result.rows;
+        } catch (error) {
+            console.error('Erro ao pesquisar médicos:', error);
+            throw error;
+        }
     }
 };
 
