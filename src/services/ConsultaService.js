@@ -1,11 +1,10 @@
-// src/services/consultaService.js
 const ConsultaModel = require('../models/ConsultaModel');
 
 function validarDadosConsulta({ paciente_id, medico_id, data_consulta }) {
   if (!paciente_id || !data_consulta) {
     throw new Error("Paciente e data da consulta são obrigatórios.");
   }
-  // Pode adicionar mais regras aqui se quiser
+
 }
 
 module.exports = {

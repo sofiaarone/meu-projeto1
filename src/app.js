@@ -4,7 +4,6 @@ const PacienteModel = require('./models/PacienteModel');
 const MedicoModel = require('./models/MedicoModel');
 const ConsultaModel = require('./models/ConsultaModel');
 
-// Initialize Express
 const app = express();
 
 app.use(express.json());
@@ -40,16 +39,12 @@ app.get('/', async (req, res) => {
         });
     }
 });
-// View engine setup
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Adicione após as configurações iniciais e antes do app.listen
-
-// Middleware para processar formulários
 app.use(express.urlencoded({ extended: true }));
 
-// Rotas para Pacientes
 app.get('/pesquisar-paciente', async (req, res) => {
     try {
         const { nome } = req.query;
@@ -76,13 +71,6 @@ app.post('/adicionar-paciente', async (req, res) => {
     }
 });
 
-// Rotas para Médicos
-
-// ...existing code...
-
-// ...existing code...
-
-// API Médicos
 app.post('/api/medicos', async (req, res) => {
     try {
         const medico = await MedicoModel.criar(req.body);
@@ -93,7 +81,6 @@ app.post('/api/medicos', async (req, res) => {
     }
 });
 
-// Rota de pesquisa de médicos
 app.get('/pesquisar-medico', async (req, res) => {
     try {
         const { nome } = req.query;
@@ -153,11 +140,6 @@ app.post('/adicionar-medico', async (req, res) => {
     }
 });
 
-
-
-// API Consultas
-// ...existing code...
-
 app.post('/adicionar-consulta', async (req, res) => {
     try {
         const consulta = await ConsultaModel.criarConsulta(req.body);
@@ -178,7 +160,6 @@ app.post('/api/consultas', async (req, res) => {
     }
 });
 
-// ...existing code...
 app.get('/api/consultas', async (req, res) => {
     try {
         const consultas = await ConsultaModel.listarConsultas();
@@ -206,9 +187,6 @@ app.delete('/api/consultas/:id', async (req, res) => {
     }
 });
 
-// ...existing code...
-
-// Start server
 const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
