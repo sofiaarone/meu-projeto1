@@ -109,3 +109,62 @@ Neste projeto, a arquitetura MVC (Model-View-Controller), organiza o código em 
 ![Diagrama do banco de dados](../assets/Diagrama-banco-de-dados.png)
 
 O diagrama acima ilustra como essas camadas se comunicam entre si e com o banco de dados, promovendo uma estrutura mais clara, modular e de fácil manutenção.
+
+## Integração Frontend-Backend
+
+### Exemplo de Integração com Fetch API
+```javascript
+// Busca dinâmica de médicos
+async function pesquisarMedicos(termo) {
+    const response = await fetch(`/api/medicos/buscar?nome=${termo}`);
+    const dados = await response.json();
+    atualizarTabelaMedicos(dados);
+}
+
+// Criação de nova consulta
+async function criarConsulta(dados) {
+    const response = await fetch('/api/consultas', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+    });
+    return await response.json();
+}
+```
+---
+
+## Interface do Sistema
+
+### Tela Principal
+![Tela Principal](../assets/tela-principal.png)
+- Lista unificada de pacientes, médicos e consultas
+- Pesquisa dinâmica integrada
+- Botões de ação para cada registro que conecta com o banco de dados
+
+### Como acessar ao servidor
+
+- Após realizar os passos de como executar o sistema no readme, digite no terminal: 
+```
+node .\src\app.js
+```
+- Acesse no navegador:
+
+http://localhost:3001
+
+---
+
+## Mudanças Relevantes
+
+### Backend
+- Implementação de pesquisa em tempo real
+- Sistema de paginação para listas grandes
+- Validações server-side
+- Tratamento de erros centralizado
+
+### Banco de Dados
+- Índices otimizados para busca
+- Triggers para logs de alterações
+- Constraints de integridade
+- Relacionamentos definidos
