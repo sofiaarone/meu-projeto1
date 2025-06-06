@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "jest.config.js",
   "scripts": {
-    "migration": "node src/scripts/runsql.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "directories": {
     "test": "tests"

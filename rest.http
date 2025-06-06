@@ -1,19 +1,19 @@
 ### Criar paciente
-POST http://localhost:3000/api/pacientes
+POST http://localhost:3001/api/pacientes
 Content-Type: application/json
 
 {
-  "nome": "Maria Souza",
-  "data_nascimento": "1980-04-10",
-  "email": "maria@gmail.com",
-  "telefone": "11999999999"
+    "nome": "Maria Silva",
+    "data_nascimento": "1980-04-10",
+    "email": "maria.silva@example.com",
+    "telefone": "11999999999"
 }
 
 ### Listar pacientes
-GET http://localhost:3000/api/pacientes
+GET http://localhost:3001/api/pacientes
 
 ### Editar paciente
-PUT http://localhost:3000/api/pacientes/1c7afc93-437f-46c5-b699-6bd6394868e3
+PUT http://localhost:3001/api/pacientes/1c7afc93-437f-46c5-b699-6bd6394868e3
 Content-Type: application/json
 
 {
@@ -24,10 +24,10 @@ Content-Type: application/json
 }
 
 ### Deletar paciente
-DELETE http://localhost:3000/api/pacientes/01af82de-534d-4911-b221-5affce20c010
+DELETE http://localhost:3001/api/pacientes/01af82de-534d-4911-b221-5affce20c010
 
 ### Criar médico
-POST http://localhost:3000/api/medicos
+POST http://localhost:3001/api/medicos
 Content-Type: application/json
 
 {
@@ -38,10 +38,10 @@ Content-Type: application/json
 }
 
 ### Listar médicos
-GET http://localhost:3000/api/medicos
+GET http://localhost:3001/api/medicos
 
 ### Editar médico
-PUT http://localhost:3000/api/medicos/f32b3bab-1cb1-4335-b7aa-70e7320821c2
+PUT http://localhost:3001/api/medicos/f32b3bab-1cb1-4335-b7aa-70e7320821c2
 Content-Type: application/json
 
 {
@@ -52,10 +52,10 @@ Content-Type: application/json
 }
 
 ### Deletar médico
-DELETE http://localhost:3000/api/medicos/f2eac5c2-f706-496e-a8df-ff3f1916c454
+DELETE http://localhost:3001/api/medicos/f2eac5c2-f706-496e-a8df-ff3f1916c454
 
 ### Criar consulta
-POST http://localhost:3000/api/consultas
+POST http://localhost:3001/api/consultas
 Content-Type: application/json
 
 {
@@ -66,19 +66,19 @@ Content-Type: application/json
     "observacoes": "Primeira consulta"
 }
 ### Listar consultas
-GET http://localhost:3000/api/consultas
+GET http://localhost:3001/api/consultas
 
 ### Editar consulta
-PUT http://localhost:3000/api/consultas/c7d97555-afda-4d6a-8c00-041b2944556b
+PUT http://localhost:3001/api/consultas/c7d97555-afda-4d6a-8c00-041b2944556b
 Content-Type: application/json
 
 {
     "paciente_id": "1c7afc93-437f-46c5-b699-6bd6394868e3",
     "medico_id": "f2eac5c2-f706-496e-a8df-ff3f1916c454",
-    "data_consulta": "2025-06-01T11:00:00Z",
+    "data_consulta": "2025-06-01T11:00:00.000Z",
     "motivo": "Dor no peito persistente",
     "observacoes": "Reagendada - Paciente solicitou alteração"
 }
 
 ### Deletar consulta
-DELETE http://localhost:3000/api/consultas/244a3576-6b70-4d01-a4aa-40fa9f226c2f
+DELETE http://localhost:3001/api/consultas/244a3576-6b70-4d01-a4aa-40fa9f226c2f
