@@ -108,7 +108,7 @@ npm start
 ```
 6. Acesse no navegador:
 
-http://localhost:3000
+http://localhost:3001
 
 ## Rodando as Migrações
 1. Criar banco de dados:
