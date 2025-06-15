@@ -150,3 +150,11 @@ Resposta de sucesso (201):
     "criado_em": "2025-05-22T16:32:19.270Z"
 }
 ```
+---
+## Vídeo de demonstração
+
+### [Clique aqui para acessar ao vídeo](https://drive.google.com/file/d/11drKujmiWhbN0aGE5yJS6sTM6ZhonMpI/view?usp=drive_link)
+---
+## Licença
+
+Este projeto é acadêmico, desenvolvido no Instituto de Tecnologia e Liderança (Inteli), como parte da disciplina de Computação (Módulo 2)
